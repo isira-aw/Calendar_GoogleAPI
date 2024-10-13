@@ -8,7 +8,7 @@ describe('UploadSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UploadSectionComponent]
+      declarations: [UploadSectionComponent] // Add component to declarations
     })
     .compileComponents();
 
