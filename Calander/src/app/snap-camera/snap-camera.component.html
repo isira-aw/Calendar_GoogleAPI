@@ -1,2 +1,18 @@
 <p>snap-camera works!</p>
+
 <button class="btn btn-primary" (click)="Allow()" >Button</button>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Date Of Birth</th>
+        <th>Delete Row</th>
+    </tr>
+    <tr *ngFor="let emloyee of emloyees">
+        <td>{{emloyee.id }}</td>
+        <td>{{emloyee.dateOfBirth }}</td>
+        <td><button type="button" calss="btn btn-danger">&copy; Delete</button></td>
+    </tr>
+</table>
+
+<mat-slide-toggle>Toggle me!</mat-slide-toggle>
