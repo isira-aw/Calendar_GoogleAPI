@@ -1,27 +1,30 @@
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" >
-    <div class="container-fluid">
-      <h1 class="navbar-brand"><b>Google Calendar</b></h1>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/date" >Date</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/upload">Upload</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/camera">Snap Camera</a>
-          </li>
-        </ul>
-      </div>
+<div class="custom-toolbar">
+  <!-- <button class="icon-button menu-button" aria-label="Menu icon">
+    <span class="icon">☰</span>
+  </button> -->
+  <span class="app-title"><b>Google Calendar</b></span>
+  <span class="spacer"></span>
+  <div class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/date">Date</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/upload">Upload</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/camera">Snap Camera</a>
+      </li>
+      <div class="button-container-home">
+        <button  mat-flat-button>Login</button>
     </div>
-  </nav>
+    </ul>
+  </div>
+</div>
+
 
 <router-outlet />
