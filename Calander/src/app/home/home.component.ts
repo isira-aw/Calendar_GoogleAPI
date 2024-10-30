@@ -11,4 +11,3 @@ export class HomeComponent {
   
     title ="Isira Adithya"
 }
-
