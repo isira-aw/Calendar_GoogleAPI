@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 export interface Emloyee{
   id: string;
@@ -10,13 +8,14 @@ export interface Emloyee{
 
 @Component({
   selector: 'app-snap-camera',
-  templateUrl: './snap-camera.component.html',
   standalone: true,
-  imports: [ MatSlideToggleModule ,CommonModule]
+  imports: [],
+  templateUrl: './snap-camera.component.html',
+  styleUrl: './snap-camera.component.css'
 })
 export class SnapCameraComponent {
 
-  emloyees: Emloyee[]=[
+  Emloyees: Emloyee[]=[
     {id:"11", dateOfBirth:"12334", password:"123"},
     {id:"22", dateOfBirth:"12334", password:"456"},
     {id:"33", dateOfBirth:"12334", password:"097"}
