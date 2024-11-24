@@ -1,0 +1,137 @@
+
+  
+  .home_container {
+
+    display: flex;
+    flex-direction: column;
+    background-color: #111;
+    color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 0px;
+    overflow: hidden;
+  }
+  
+  /* Header */
+  .home_header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #444;
+    padding: 10px;
+  }
+  .home_h1 {
+    font-size: 2.5rem; /* Large font size for prominence */
+    font-weight: bold; /* Bold font for emphasis */
+    text-align: center; /* Centered text */
+    color: #ffffff; /* Neutral dark color */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    margin: 1rem 0; /* Spacing around the title */
+    padding: 0.5rem; /* Inner padding */
+    border-radius: 10px; /* Rounded edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for elevation */
+    display: inline-block; /* Inline block for precise alignment */
+  }
+  /* Content section */
+  .home_content {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  /* Calendar grid */
+  .home_calendar {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+  
+  .home_day {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+  }
+  
+ 
+  .home_sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .home_top-box,
+  .home_bottom-box {
+    min-height: 200px;
+    max-height: 240px;
+    background-color: #333;
+    flex: 1;
+    border-radius: 5px;
+    border: 2px solid #7d7979;
+  }
+  
+  .home_buttonsDiv {
+    display: flex;
+    justify-content: space-around;
+    gap: 2%;
+  }
+  
+  .home_buttonsDiv button {
+    flex: 1;
+    height: 50px;
+    border: none;
+
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .home_buttonsDiv button:hover {
+    background-color: #777;
+  }
+  .home_calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 boxes per row */
+    gap: 5px; /* Space between boxes */
+  }
+  
+  @media (max-width: 768px) {
+    .home_content {
+      flex-direction: column;
+    }
+    .home_day {
+        width: 100%;
+        height: 70px;
+      }
+      .home_top-box,
+      .home_bottom-box {
+      min-height: 200px;
+      max-height: 10000px;
+    }
+    
+  }
+  
+  @media (max-width: 480px) {
+    .home_buttonsDiv button {
+      height: 30px;
+      font-size: 10px;
+    }
+    .home_day {
+        width: 100%;
+        height: 40px;
+      }
+    .home_top-box,
+    .home_bottom-box {
+    min-height: 200px;
+    max-height: 10000px;}
+  }
+  
