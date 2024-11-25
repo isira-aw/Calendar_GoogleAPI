@@ -134,4 +134,25 @@
     min-height: 200px;
     max-height: 10000px;}
   }
-  
+  .home_calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .home_day {
+    background-color: #D3D3D3;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  }
+
+  .home_day:hover {
+    transform: scale(1.1);
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
