@@ -1,17 +1,14 @@
-# Calendar_GoogleAPI
+Frontend: React
 
-# backEnd
+npx create-react-app calendar-app
+cd calendar-app
+npm install axios react-router-dom @mui/material @emotion/react @emotion/styled
 
-*** cd backend      ***
-*** pip install -r requirements.txt***
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
 
-***cd D:\GitHUB\Calendar_GoogleAPI\backend\daze_backend***
- *** python -m uvicorn main:app --reload ***
+npm install
+npm audit
 
-# frontend
+npm audit fix
 
-<p>
-cd D:\GitHUB\Calendar_GoogleAPI\frontend\calendar-front 
-</p>
-*** npm install***
- *** npm install react-router-dom  ***
