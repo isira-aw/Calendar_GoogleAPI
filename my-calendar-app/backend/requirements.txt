@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-dotenv
+requests
+mysql-connector-python
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
