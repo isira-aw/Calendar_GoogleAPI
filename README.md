@@ -1,4 +1,6 @@
-## Backend (FastAPI)
+## TimeVault (name)
+
+ Backend (FastAPI)
 
 mkdir my-calendar-app
 cd my-calendar-app
