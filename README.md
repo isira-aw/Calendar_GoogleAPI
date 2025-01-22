@@ -1,75 +1,26 @@
 ## TimeVault (name)
 
- Backend (FastAPI)
+<!-- Summary: Team Meeting
+Location: Conference Room A
+Description: Discussion on Q1 targets and strategy.
+Date: 2025-01-25
+Start Time: 10:00:00
+End Time: 11:30:00
+Time Zone: Europe/Vienna
+Color ID: 6
+Attendees: john.doe@example.com, jane.doe@example.com -->
 
-mkdir my-calendar-app
-cd my-calendar-app
-mkdir backend
-cd backend
+pip install kivy google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
 
+python --version
 pip install -r requirements.txt
-uvicorn main:app --reload
-notepad requirements.txt
-***
-fastapi
-uvicorn
-python-dotenv
-requests
-mysql-connector-python
-google-auth
-google-auth-oauthlib
-google-auth-httplib2
-***
+python main.py
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-pip install -r requirements.txt
-pip install -r requirements.txt --user
-pip show uvicorn
-pip install uvicorn --user
+python -m ensurepip --upgrade
+# Step 1: Install dependencies
+pip install kivy google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
 
-cd D:\GitHUB\Calendar_GoogleAPI\my-calendar-app\backend
-python -m uvicorn main:app --reload
-
-python -m venv env
-.\env\Scripts\activate
-env\Scripts\activate
-
-Get-ExecutionPolicy
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\env\Scripts\Activate
-
-(env) PS D:\GitHUB\Calendar_GoogleAPI\my-calendar-app\backend>
-
-pip install -r requirements.txt
-python -m uvicorn main:app --reload
-
-## 
-
-cd D:\GitHUB\Calendar_GoogleAPI\my-calendar-app
-
-mkdir frontend
-cd frontend
-npx create-react-app .
-
-npm install react-router-dom axios
-npm start
-
---------------------
-
-my-calendar-app/
-   ├─ backend/
-   │   ├─ main.py
-   │   ├─ requirements.txt
-   │   └─ .env           (optional for secrets)
-   └─ frontend/
-       ├─ package.json
-       ├─ public/
-       │   └─ index.html
-       └─ src/
-           ├─ App.js
-           ├─ index.js
-           ├─ pages/
-           │   ├─ LoginPage.js
-           │   └─ CalendarPage.js
-           └─ components/
-               ├─ CalendarGrid.js
-               └─ Sidebar.js
+# Step 2: Run the app
+python main.py
