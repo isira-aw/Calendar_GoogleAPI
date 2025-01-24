@@ -57,8 +57,7 @@ def main():
                 'RRULE:FREQ=DAILY;COUNT=1'
             ],
             'attendees': [
-                {'email': 'social@neuralnine.com'},
-                {'email': 'someemailthathopefullydoesnotexist@mail.com'}
+                {'email': 'social@neuralnine.com'}
             ]
         }
         created_event = service.events().insert(calendarId='primary', body=event).execute()
