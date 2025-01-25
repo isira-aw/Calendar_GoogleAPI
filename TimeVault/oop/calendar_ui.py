@@ -8,10 +8,71 @@ from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 from calendar_api import authenticate_google_api, create_calendar_event  # Import the functions from your calendar API module
 
+from kivy.uix.label import Label
+from kivy.uix.image import Image
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.uix.camera import Camera
+from kivy.uix.screenmanager import Screen
+from kivy.graphics.texture import Texture
+from PIL import Image as PILImage
+from datetime import datetime
+import os
+from camera import CameraProcessor
+
+
 # Page 1: Signing Page
 class SigningPage(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
+        # Main layout
+        layout = BoxLayout(orientation='vertical', padding=20, spacing=20)
+
+        # Application title
+        app_title = Label(
+            text="TimeVault",
+            font_size=48,
+            bold=True,
+            size_hint=(1, 0.3),
+            halign="center",
+            valign="middle",
+            color=(0, 0, 1, 1),
+        )
+        app_title.bind(size=app_title.setter("text_size"))
+        layout.add_widget(app_title)
+
+        # User input for email
+        self.email_input = TextInput(
+            hint_text="Enter your email",
+            multiline=False,
+            size_hint=(1, 0.1),
+            height=40,
+        )
+        layout.add_widget(self.email_input)
+
+        # Submit button
+        submit_button = Button(
+            text="Submit",
+            background_color=(0, 0, 1, 1),
+            size_hint=(1, 0.1),
+        )
+        submit_button.bind(on_press=self.submit_email)
+        layout.add_widget(submit_button)
+
+        self.add_widget(layout)
+
+    def submit_email(self, instance):
+        """Handle email submission and navigate to the next page."""
+        email = self.email_input.text.strip()
+        if email:
+            self.manager.current = "books_page"  # Navigate to the next page
+        else:
+            # Show an error message if email is not entered
+            self.email_input.hint_text = "Please enter a valid email"
+            self.email_input.focus = True
+            
 # Page 2: Books Page
 class BooksPage(Screen):
     def __init__(self, **kwargs):
@@ -110,26 +171,115 @@ class BooksPage(Screen):
         self.manager.current = 'final_page'
 
 
-# Page 3: Final Page
+# # Page 3: Final Page
 class FinalPage(Screen):
-    def show_popup(self):
-        # Create popup content
-        popup_layout = BoxLayout(orientation='vertical', padding=20, spacing=20)
-        self.popup_input = TextInput(hint_text='Enter something', multiline=False, size_hint=(1, None), height=40)
-        popup_layout.add_widget(self.popup_input)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
-        submit_button = Button(text='Submit')
-        submit_button.bind(on_press=self.submit_input)
-        popup_layout.add_widget(submit_button)
+        # Main layout for the page
+        self.layout = BoxLayout(orientation='vertical', padding=20, spacing=20)
+
+        # Label to display extracted text
+        self.extracted_text_label = Label(
+            text="Extracted Text: None",
+            size_hint=(1, None),
+            height=250,
+            color=(0, 1, 0, 1),
+        )
+        self.layout.add_widget(self.extracted_text_label)
+
+        # Placeholder for the captured image
+        self.captured_image = Image(size_hint=(1, None), height=300)
+        self.layout.add_widget(self.captured_image)
+
+        # Buttons container
+        buttons_layout = BoxLayout(orientation='horizontal', size_hint=(1, None), height=50, spacing=10)
+
+        # Add "Click Me" button to open the camera
+        click_me_button = Button(text="Open Camera")
+        click_me_button.bind(on_press=self.show_camera_popup)
+        buttons_layout.add_widget(click_me_button)
+
+        # Add "Back" button to navigate to the previous page
+        back_button = Button(text="Back to Page 2")
+        back_button.bind(on_press=self.go_back)
+        buttons_layout.add_widget(back_button)
+
+        self.layout.add_widget(buttons_layout)
+
+        # Add the main layout to the screen
+        self.add_widget(self.layout)
+
+        # File path for the captured image
+        self.saved_image_path = None
+
+    def show_camera_popup(self, instance):
+        """Show a pop-up with the camera interface."""
+        popup_layout = BoxLayout(orientation='vertical', padding=20, spacing=20)
+
+        # Add Camera widget
+        self.camera = Camera(resolution=(640, 480), play=True)
+        popup_layout.add_widget(self.camera)
+
+        # Buttons container for the popup
+        popup_buttons_layout = BoxLayout(orientation='horizontal', size_hint_y=None, height=50, spacing=10)
+
+        # Capture button
+        capture_button = Button(text="Capture")
+        capture_button.bind(on_press=self.capture_image)
+        popup_buttons_layout.add_widget(capture_button)
+
+        # Back button for the popup
+        popup_back_button = Button(text="Back")
+        popup_back_button.bind(on_press=self.close_popup)
+        popup_buttons_layout.add_widget(popup_back_button)
+
+        popup_layout.add_widget(popup_buttons_layout)
 
         # Create and open the popup
-        self.popup = Popup(title='Popup Input', content=popup_layout, size_hint=(0.8, 0.4))
+        self.popup = Popup(title="Camera", content=popup_layout, size_hint=(0.9, 0.9))
         self.popup.open()
 
-    def submit_input(self, instance):
-        # Update label text and close popup
-        self.ids.result_label.text = self.popup_input.text
+    def capture_image(self, instance):
+        """Capture an image from the camera and extract text."""
+        if self.camera.texture:
+            # Get the texture from the camera
+            texture = self.camera.texture
+            size = texture.size
+            buffer = texture.pixels
+
+            # Save the texture as an image
+            pil_image = PILImage.frombytes("RGBA", size, buffer)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            file_name = f"captured_image_{timestamp}.png"
+            self.saved_image_path = os.path.join(os.getcwd(), file_name)
+            pil_image.save(self.saved_image_path)
+
+            # Load the image into the Kivy Image widget
+            self.captured_image.texture = Texture.create(size=size, colorfmt="rgba")
+            self.captured_image.texture.blit_buffer(buffer, colorfmt="rgba", bufferfmt="ubyte")
+            self.captured_image.texture.flip_vertical()
+
+            # Stop the camera and close the popup
+            self.camera.play = False
+            self.popup.dismiss()
+
+            # Extract text from the captured image
+            extracted_text = CameraProcessor.extract_text(self.saved_image_path)
+
+            # Update the extracted text label
+            self.extracted_text_label.text = f"Extracted Text: {extracted_text}"
+
+    def close_popup(self, instance):
+        """Stop the camera and close the popup."""
+        if self.camera.play:
+            self.camera.play = False
         self.popup.dismiss()
+
+    def go_back(self, instance):
+        """Navigate back to the previous page (Page 2)."""
+        self.manager.current = "books_page"
+        self.camera.play = False
 
 
 # Main App

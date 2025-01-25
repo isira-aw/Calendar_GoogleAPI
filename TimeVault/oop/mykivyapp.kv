@@ -1,28 +1,28 @@
 #:kivy 2.3.1
 
-<SigningPage>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 20
-        spacing: 20
+# <SigningPage>:
+#     BoxLayout:
+#         orientation: 'vertical'
+#         padding: 20
+#         spacing: 20
 
-        Label:
-            text: 'Calendar'
-            font_size: 24
-            size_hint: 1, 0.2
-            halign: 'center'
+#         Label:
+#             text: 'Calendar'
+#             font_size: 24
+#             size_hint: 1, 0.2
+#             halign: 'center'
 
-        TextInput:
-            id: email_input
-            hint_text: 'Enter your email'
-            multiline: False
-            size_hint: 1, 0.1
-            height: 40
+#         TextInput:
+#             id: email_input
+#             hint_text: 'Enter your email'
+#             multiline: False
+#             size_hint: 1, 0.1
+#             height: 40
 
-        Button:
-            text: 'Enter'
-            background_color: 0, 0, 1, 1
-            on_press: root.manager.current = 'books_page'
+#         Button:
+#             text: 'Enter'
+#             background_color: 0, 0, 1, 1
+#             on_press: root.manager.current = 'books_page'
 
 <BooksPage>:
     # BoxLayout:
@@ -73,19 +73,19 @@
         padding: 20
         spacing: 20
 
-        Button:
-            text: 'Click Me'
-            size_hint: 0.5, 0.5
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            background_color: 0, 0, 1, 1
-            on_press: root.show_popup()
+        # Button:
+        #     text: 'Click Me'
+        #     size_hint: 0.5, 0.5
+        #     pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        #     background_color: 0, 0, 1, 1
+        #     on_press: root.show_popup()
 
-        Label:
-            id: result_label
-            size_hint: 1, 0.2
+        # Label:
+        #     id: result_label
+        #     size_hint: 1, 0.2
 
-        Button:
-            text: 'Back'
-            background_color: 1, 1, 1, 1
-            color: 0, 0, 0, 1
-            on_press: root.manager.current = 'books_page'
+        # Button:
+        #     text: 'Back'
+        #     background_color: 1, 1, 1, 1
+        #     color: 0, 0, 0, 1
+        #     on_press: root.manager.current = 'books_page'
